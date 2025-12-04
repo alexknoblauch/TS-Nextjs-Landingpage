@@ -1,6 +1,19 @@
-import { NextRequest, NextResponse } from "next/server";
+/**
+ * Node Modules
+ */
 import { connectToDatabase } from "../../../lib/mongoose";
+import { v2 as cloudinary } from 'cloudinary';              // VORSICHT v2
+
+/**
+ * Custom Modules
+ */
+import { NextRequest, NextResponse } from "next/server";
 import Event from "../../../lib/models/event";
+
+/**
+ * Types
+ */
+import { EventImageUpload } from "@/lib/types/cloudinary";
 
 export async function POST(req: NextRequest) {
     try {
@@ -16,6 +29,26 @@ export async function POST(req: NextRequest) {
                 { status: 400 }
             );
         }
+
+        const file = formData.get('image') as File
+
+        if(!file){
+            return NextResponse.json({message: 'No image File found'}, {status: 400})
+        }
+
+        const arrayBuffer = await file.arrayBuffer()
+        const buffer = Buffer.from(arrayBuffer)
+
+        const uploadResult = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream({resource_type: 'image', folder: 'DevEvent'}, (error, results) => {
+                if(error) return reject(error);
+
+                resolve(results)
+            }).end(buffer)
+        })
+
+
+        event.image = (uploadResult as EventImageUpload).secure_url         // TS zuweisung auf evenet !! Interface
 
         const createdEvent = await Event.create(event);
         
@@ -35,5 +68,17 @@ export async function POST(req: NextRequest) {
             },
             { status: 500 }
         );
+    }
+}
+
+export async function GET(){
+    try{
+        await connectToDatabase()
+
+        const events = await Event.find().sort({ created: -1 })
+
+        return NextResponse.json({message: 'Successfully retrieved Events', events}, {status: 200})
+    } catch(e) {
+        return NextResponse.json({message: 'Failed fetch Event', e}, {status: 500})
     }
 }

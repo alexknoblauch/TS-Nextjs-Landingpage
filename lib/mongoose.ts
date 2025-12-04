@@ -10,9 +10,9 @@ export async function connectToDatabase() {
   try {
     await mongoose.connect(MONGODB_CONNECTIONSTRING);
 
-    console.log('✅ Connected to MongoDB');
+    console.log('Connected to MongoDB');
   } catch (error) {
-    console.error('❌ MongoDB connection error:', error);
+    console.error('MongoDB connection error:', error);
 
     throw error;
   }
