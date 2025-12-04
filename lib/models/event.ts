@@ -91,19 +91,19 @@ const eventSchema = new Schema<IEvent>({
     type: String
   }]
 }, {
-  timestamps: true 
+  timestamps: true,
+  collection: 'events'
 });
 
-eventSchema.pre('save', function(next){
+eventSchema.pre('save', function(){
     if(this.isModified('title')) {
         const title = this.title
         this.slug = slugify(title)
     }
-    // @ts-ignore
-    next()
 })
 
-eventSchema.index({ slug: 1 }); 
 eventSchema.index({ date: 1 }); 
+ 
+const Event = mongoose.models.Event || model<IEvent>('Event', eventSchema);
 
-export default model<IEvent>('Event', eventSchema);
+export default Event 

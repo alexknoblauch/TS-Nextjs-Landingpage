@@ -2,12 +2,12 @@
 'use client'
 import { useEffect } from 'react'
 import { posthog } from 'posthog-js'
-import { config } from '@/config'
+import { clientConfig } from '../../config'
 
 export default function PostHogProvider() {
   useEffect(() => {
-    posthog.init(config.posthog.NEXT_PUBLIC_POSTHOG_KEY, {
-      api_host: config.posthog.NEXT_PUBLIC_POSTHOG_HOST
+    posthog.init(clientConfig.posthog.NEXT_PUBLIC_POSTHOG_KEY, {
+      api_host: clientConfig.posthog.NEXT_PUBLIC_POSTHOG_HOST
     })
   }, [])
   

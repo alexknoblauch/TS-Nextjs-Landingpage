@@ -5,6 +5,7 @@ export const clientConfig = {
   }
 } as const;
 
+//IN NEXTJS Client und Server immer unterscheide
 export const serverConfig = {
   MONGODB_CONNECTIONSTRING: process.env.MONGODB_CONNECTIONSTRING as string,
   port: process.env.PORT || 3000,
