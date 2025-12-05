@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackFileSystemCacheForDev: true,  
   },
+    turbopack: {
+    root: 'C:\\Users\\Alex\\Desktop\\Portfolio\\40. NEXTJS project'
+  }
 };
 
 export default nextConfig;

@@ -82,3 +82,4 @@ export async function GET(){
         return NextResponse.json({message: 'Failed fetch Event', e}, {status: 500})
     }
 }
+

@@ -12,21 +12,22 @@ import  slugify  from "slugify";
 export const eventZodSchema = z.object({
   title: z.string(),
   slug: z.string(),
-  description: z.string(),
-  overview: z.string(),
   image: z.string(),
-  venue: z.string(),
   location: z.string(),
   date: z.string(),
   time: z.string(),
-  mode: z.string(),
-  audience: z.string(),
-  agenda: z.array(z.string()),
-  organizer: z.string(),
-  tags: z.array(z.string())
+  description: z.string().optional(),
+  overview: z.string().optional(),
+  venue: z.string().optional(),
+  mode: z.string().optional(),
+  audience: z.string().optional(),
+  agenda: z.array(z.string()).optional(),
+  organizer: z.string().optional(),
+  tags: z.array(z.string()).optional(),
 });
 
-export type IEvent = z.infer<typeof eventZodSchema> & Document;
+export type IEvent = z.infer<typeof eventZodSchema> & Document;     // Document ist für Mongoose __v _id ect.
+export type EventDetails = z.infer<typeof eventZodSchema> 
 
 
 /**

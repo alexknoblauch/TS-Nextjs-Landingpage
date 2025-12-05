@@ -14,7 +14,7 @@ export default function EventCard({title, image, slug, location, date, time}: Pr
     return (
         <Link href={`/events/${slug}`} id='event-card'>
             <div className="aspect-4/3 relative">
-                <Image src={image} alt={image} fill/>
+                <Image src={image} alt={title} fill/>
             </div>
 
             <div className="flex flex-row gap-2">
@@ -24,14 +24,14 @@ export default function EventCard({title, image, slug, location, date, time}: Pr
 
             <p className="title">{title}</p>
 
-            <div className="datetime">
+            <div className="datetime flex flex-row gap-2">
                 <div>
                     <Image src='/icons/calendar.svg' alt="date" width={14} height={14} />
                     <p>date</p>
                 </div>
             </div>
 
-            <div>
+            <div className="flex flex-row gap-2" >
               <Image src='/icons/clock.svg' alt="time" width={14} height={14}/>  
               <p>{time}</p>
             </div>

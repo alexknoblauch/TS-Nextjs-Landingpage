@@ -12,14 +12,16 @@ import Image from "next/image";
  * Custom Modules
  */
 import {clientConfig}  from '../config/index'
-import { IEvent } from "@/lib/models/event";
+import { EventDetails } from "@/lib/models/event";
+import { events } from "@/lib/constants";
+import { getEvents } from "@/lib/actions/getEvents";
 
 
 export default async function Home() {
 
-  const res = await fetch(`${clientConfig.NEXT_PUBLIC_BASE_URL}/api/events`)
-  const data  = await res.json() 
-  const events = data as IEvent[]
+  const DBevents = await getEvents() as EventDetails[]
+
+  
 
 
   return <section className="flex flex-col items-center">
@@ -31,8 +33,8 @@ export default async function Home() {
       <div className="mt-20 space-y-7">
         <h3>Featured Events</h3>
         <ul className="events">
-          {events.map((event: IEvent) => (
-            <li key={event.title}>
+          {DBevents && DBevents.length > 0 && DBevents.map((event: EventDetails) => (          // externe Array checks
+            <li key={event.title} style={{ listStyleType: 'none' }}>
               <EventCard {...event} />
             </li>
           ))}
