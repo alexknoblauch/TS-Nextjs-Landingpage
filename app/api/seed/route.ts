@@ -1,6 +1,6 @@
 // app/api/events/seed/route.ts
 import { NextResponse } from "next/server";
-import { defaultEvent } from "../events/defaultEvent";
+import { defaultEvent, similiarEvents } from "../events/defaultEvent";
 import { defaultEvents } from "../events/defaultEvent";
 import { connectToDatabase } from "@/lib/mongoose";
 import Event from "@/lib/models/event";
@@ -9,9 +9,8 @@ export async function GET() {
   await connectToDatabase()
 
   try{
-
     await Promise.all(
-      defaultEvents.map(event => Event.create(event))
+      similiarEvents.map(event => Event.create(event))
     )
     
     return NextResponse.json({

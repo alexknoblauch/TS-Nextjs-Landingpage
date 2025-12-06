@@ -33,7 +33,6 @@ export default function BookEvent(){
 
                 <button type="submit" className="button-submit">Submit</button>
             </form>
-
         )}
     </div>
 )

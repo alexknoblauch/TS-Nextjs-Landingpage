@@ -123,4 +123,39 @@ export const defaultEvents = [
   }
 ];
 
-export default defaultEvent;
+
+
+export const similiarEvents = [
+  {
+    title: "New React Conf 2025",
+    image: "/images/event5.png",
+    slug: "new-react-conf-2025",
+    location: "Las Vegas, Nevada",
+    date: "May 14-15, 2025",
+    time: "9:00 AM",
+    description: "Join the global React community for two days of cutting-edge talks, workshops, and networking with React core team members and industry experts.",
+    overview: "The premier conference for React developers featuring the latest updates, best practices, and future of React ecosystem.",
+    venue: "Caesars Forum Conference Center",
+    mode: "in-person",
+    audience: "Developers, Tech Leads, Architects",
+    agenda: ["Keynote: React Future", "Concurrent Features Deep Dive", "State Management Workshop", "Networking Reception"],
+    organizer: "Meta Open Source",
+    tags: ["react", "frontend", "javascript", "web"]
+  },
+    {
+    title: "React Conf 2026",
+    image: "/images/event4.png",
+    slug: "react-conf-2026",
+    location: "Las Vegas, Nevada",
+    date: "May 14-15, 2025",
+    time: "9:00 AM",
+    description: "Join the global React community for two days of cutting-edge talks, workshops, and networking with React core team members and industry experts.",
+    overview: "The premier conference for React developers featuring the latest updates, best practices, and future of React ecosystem.",
+    venue: "Caesars Forum Conference Center",
+    mode: "in-person",
+    audience: "Developers, Tech Leads, Architects",
+    agenda: ["Keynote: React Future", "Concurrent Features Deep Dive", "State Management Workshop", "Networking Reception"],
+    organizer: "Meta Open Source",
+    tags: ["react", "frontend", "javascript", "web"]
+  }
+]
